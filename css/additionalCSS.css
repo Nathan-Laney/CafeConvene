@@ -6,3 +6,17 @@
 #navbarLogo {
     transition: filter 200ms ease;
 }
+
+#navbar-list {
+    margin-bottom: -10px;
+    margin-top: -20px;
+}
+
+#footerText {
+    font-size: 10px;
+}
+
+#footerNav {
+    padding: 1px;
+    margin: 1px;
+}
