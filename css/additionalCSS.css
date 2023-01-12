@@ -1,0 +1,8 @@
+#navbarLogo:hover {
+    filter: brightness(0) invert(1);
+    transition: filter 200ms ease;
+}
+
+#navbarLogo {
+    transition: filter 200ms ease;
+}
