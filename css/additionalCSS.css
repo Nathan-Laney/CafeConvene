@@ -31,3 +31,10 @@
 .event-list li a:hover{
     color: #201e50;
 }
+body {
+    padding-top : 70px;
+    padding-bottom: 50px;
+}
+#smallerNavbar {
+    margin-top : 60px;
+}

@@ -17,7 +17,7 @@
 
 <body>
     <!-- Main navbar at the top, including user navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top">
         <a class="navbar-brand" href="./index.html"><img src="./static/Logo-Navy.svg" height="45px" id="navbarLogo"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
             aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,7 +39,7 @@
     </nav>
 
     <!-- Sub-navbar at the top, including site navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top" id="smallerNavbar">
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav" id="navbar-list">
                 <li class="nav-item ms-2 me-auto my-0 py-0">
@@ -75,6 +75,10 @@
                     <option value="5">Sale</option>
                     <option value="99">Other</option>
                 </select>
+            </div>
+            <div class="form-group pb-2">
+                <label for="eventNameInput">Location:</label>
+                <textarea class="form-control" id="eventNameInput" rows="1"></textarea>
             </div>
             <div class="form-group pb-2">
                 <label for="emailInput">Email Address:</label>
