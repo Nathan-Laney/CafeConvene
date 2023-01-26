@@ -20,3 +20,14 @@
     padding: 1px;
     margin: 1px;
 }
+
+.event-list {
+    list-style: circle;
+}
+.event-list li a {
+    color: #806656;
+}
+
+.event-list li a:hover{
+    color: #201e50;
+}
