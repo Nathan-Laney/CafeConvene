@@ -36,5 +36,6 @@ body {
     padding-bottom: 50px;
 }
 #smallerNavbar {
-    margin-top : 60px;
+    margin-top : 70px;
+    /* z-index: -998; */
 }
