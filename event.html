@@ -17,8 +17,8 @@
 
 <body>
     <!-- Main navbar at the top, including user navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top">
-        <a class="navbar-brand" href="./index.html"><img src="./static/Logo-Navy.svg" height="45px" id="navbarLogo"></a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top" id="biggerNavbar">
+        <a class="navbar-brand" href="./index.html"><img src="./static/Logo-Navy.svg" height="45" alt="logo" id="navbarLogo"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
             aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -39,9 +39,9 @@
     </nav>
 
     <!-- Sub-navbar at the top, including site navigation -->
-    <nav class="navbar navbar-light bg-primary fixed-top" id="smallerNavbar">
-        <div class="" id="navbarText">
-            <ul class="nav navbar-nav" id="navbar-list">
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top" id="smallerNavbar">
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav" id="navbar-list">
                 <li class="nav-item ms-2 me-auto my-0 py-0">
                     <a class="nav-link" href="./events.html">Events</a>
                 </li>
@@ -73,8 +73,8 @@
     </div>
     <div class="container m-5">
         <div class="row">
-            <div class="col-2">
-                Image goes here
+            <div class="col-4">
+                <img src="./static/hex-form.png" alt="Bag of coffee" class="img-fluid img-thumbnail">
             </div>
             <div class="col-8">
                 <p>FORM is an expression of structure and formation -- an experiment in taking differing elements to create a
@@ -101,14 +101,20 @@
     <div class="container m-5"><p class="mb-0"><strong>Event Type:</strong> Coffee Tasting</p>
         <p class="mb-0"><strong>Location:</strong> 1824 Statesville Ave. 101, Charlotte, NC 28206 </p>
         <p class="mb-0"><strong>Event Start:</strong> 3pm, January 27, 2023</p>
-        <p class="mb-5"><strong>Event End:</strong> 5pm, January 27, 2023</p>
+        <p class="mb-0"><strong>Event End:</strong> 5pm, January 27, 2023</p>
     </div>
+    <form>
+    <div class="container m-5 mt-2">
+        <input class="btn btn-primary mt-3 text-right" type="button" value="Edit Event">
+        <input class="btn btn-primary mt-3 text-right" type="button" value="Delete Event">
+    </div>
+</form>
 
     <!-- END BODY CONTENT -->
 
     <!-- Footer -->
     <nav class="navbar fixed-bottom navbar-expand-lg navbar-light bg-primary">
-        <div class="navbar-brand" id="footerNav">
+        <div class="navbar-brand">
             <ul class="navbar-nav" id="footerNav">
                 <li class="nav-item ms-2 me-auto my-0 py-0" id="footerText">
                     <a class="nav-link" href="#">&#xA9; Café Convene</a>

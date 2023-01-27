@@ -17,8 +17,8 @@
 
 <body>
     <!-- Main navbar at the top, including user navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top">
-        <a class="navbar-brand" href="./index.html"><img src="./static/Logo-Navy.svg" height="45px" id="navbarLogo"></a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top" id="biggerNavbar">
+        <a class="navbar-brand" href="./index.html"><img src="./static/Logo-Navy.svg" height="45" alt="logo" id="navbarLogo"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
             aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -40,7 +40,7 @@
 
     <!-- Sub-navbar at the top, including site navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top" id="smallerNavbar">
-        <div class="collapse navbar-collapse" id="navbarText">
+        <div class="collapse navbar-collapse">
             <ul class="navbar-nav" id="navbar-list">
                 <li class="nav-item ms-2 me-auto my-0 py-0">
                     <a class="nav-link" href="./events.html">Events</a>
@@ -77,8 +77,8 @@
                 </select>
             </div>
             <div class="form-group pb-2">
-                <label for="eventNameInput">Location:</label>
-                <textarea class="form-control" id="eventNameInput" rows="1"></textarea>
+                <label for="eventLocationInput">Location:</label>
+                <textarea class="form-control" id="eventLocationInput" rows="1"></textarea>
             </div>
             <div class="form-group pb-2">
                 <label for="emailInput">Email Address:</label>
@@ -104,7 +104,7 @@
 
     <!-- Footer -->
     <nav class="navbar fixed-bottom navbar-expand-lg navbar-light bg-primary">
-        <div class="navbar-brand" id="footerNav">
+        <div class="navbar-brand">
             <ul class="navbar-nav" id="footerNav">
                 <li class="nav-item ms-2 me-auto my-0 py-0" id="footerText">
                     <a class="nav-link" href="#">&#xA9; Café Convene</a>
