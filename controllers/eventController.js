@@ -3,9 +3,9 @@ const model = require('../models/event');
 
 // GET /events: send all events
 exports.index = (req, res)=>{
-    // res.send('send all events');
-    let events = model.find();
-    res.render('./event/index', {events});
+    res.send('send all events');
+    // let events = model.find();
+    // res.render('./event/index', {events});
 };
 
 // GET /events/new: send html form to create a sto

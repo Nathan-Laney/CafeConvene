@@ -25,21 +25,21 @@ const events = [
 }
 ];
 
-exports.find = () => stories;
+exports.find = () => events;
 
-exports.findById = (id) => stories.find(story=>story.id === id);
+exports.findById = (id) => events.find(event=>event.id === id);
 
-exports.save = function(story) {
-    story.id = uuidv4()
-    story.createdAt = DateTime.now().toLocaleString(DateTime.DATETIME_SHORT)
-    stories.push(story);
+exports.save = function(event) {
+    event.id = uuidv4()
+    event.createdAt = DateTime.now().toLocaleString(DateTime.DATETIME_SHORT)
+    events.push(event);
 };
 
-exports.updateById = function(id, newStory) {
-    let story = stories.find(story=>story.id === id);
-    if (story){
-        story.title = newStory.title;
-        story.content = newStory.content;
+exports.updateById = function(id, newevent) {
+    let event = events.find(event=>event.id === id);
+    if (event){
+        event.title = newevent.title;
+        event.content = newevent.content;
         return true;
     } else {
         return false;
@@ -47,9 +47,9 @@ exports.updateById = function(id, newStory) {
 };
 
 exports.deleteById = function(id) {
-    let index = stories.findIndex(story => story.id === id);
+    let index = events.findIndex(event => event.id === id);
     if (index !== -1) {
-        stories.splice(index, 1);
+        events.splice(index, 1);
         return true;
     } else {
         return false;
