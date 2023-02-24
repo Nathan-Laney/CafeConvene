@@ -2,7 +2,8 @@
 const express = require('express');
 const morgan = require('morgan');
 const methodOverride = require('method-override');
-const eventRoutes = require('./routes/eventRoutes')
+const eventRoutes = require('./routes/eventRoutes');
+const baseRoutes = require('./routes/baseRoutes');
 
 // create app
 const app = express();
@@ -18,10 +19,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(morgan('tiny'));
 app.use(methodOverride('_method'));
 
-// set up routes
-app.get('/', (req, res)=>{
-    res.render('index');
-});
+app.use('/', baseRoutes)
 
 app.use('/event', eventRoutes)
 
@@ -38,8 +36,13 @@ app.use((err, req, res, next)=>{
         err.message = ("Internal Server Error");
 
     }
+    // console.log("---------------");
+    // console.log(err.status);
     res.status(err.status);
-    res.render('error', {error: err})
+    // console.log("---------------");
+    // console.log(err);
+    // console.log("---------------");
+    res.render('error', {err})
 })
 
 // start the server
