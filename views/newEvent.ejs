@@ -1,0 +1,55 @@
+<%- include('./partials/header.ejs') %>
+
+    <!-- START BODY CONTENT -->
+    <div class="container m-5">
+        <form>
+            <!-- Title infobox -->
+            <div class="form-group pb-2">
+                <label for="eventNameInput">Event Name:</label>
+                <textarea class="form-control" id="eventNameInput" rows="1"></textarea>
+            </div>
+            <!-- Details infobox -->
+            <div class="form-group pb-2">
+                <label for="eventDetailsInput">Event Details:</label>
+                <textarea class="form-control" id="eventDetailsInput" rows="3"></textarea>
+            </div>
+            <!-- Dropdown -->
+            <div class="form-group pb-2">
+                <label for="exampleFormControlSelect1">Event Type:</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option selected disabled>Select an Event Type</option>
+                    <option value="1">Coffee Tasting</option>
+                    <option value="2">Latte Art Masterclass</option>
+                    <option value="3">New Roast Launch</option>
+                    <option value="4">New Cafe Opening</option>
+                    <option value="5">Sale</option>
+                    <option value="99">Other</option>
+                </select>
+            </div>
+            <div class="form-group pb-2">
+                <label for="eventLocationInput">Location:</label>
+                <textarea class="form-control" id="eventLocationInput" rows="1"></textarea>
+            </div>
+            <div class="form-group pb-2">
+                <label for="emailInput">Email Address:</label>
+                <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
+            </div>
+
+            <div class="form-group pb-2">
+                <label for="eventStartDateTime">Event Start:</label>
+                <input class="form-control" type="datetime-local" id="eventStartDateTime" name="eventStartDateTime">
+            </div>
+            <div class="form-group pb-2">
+                <label for="eventEndDateTime">Event End:</label>
+                <input class="form-control" type="datetime-local" id="eventEndDateTime" name="eventEndDateTime">
+            </div>
+            <div class="form-group pb-2">
+                <label for="imageUpload">Select Image:</label>
+                <input class="form-control" type="file" id="imageUpload" name="imageUpload" accept="image/*">
+            </div>
+            <input class="btn btn-primary mt-3 text-right" type="submit" value="Submit">
+        </form>
+    </div>
+    
+    <!-- END BODY CONTENT -->
+<%- include('./partials/footer.ejs') %>
