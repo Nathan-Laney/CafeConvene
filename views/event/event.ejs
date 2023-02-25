@@ -24,7 +24,9 @@
         <div id="event"><%= event.details%></div>
         <form>
             <button type="submit" method="GET" formaction="/event/<%=event.id%>/edit">Edit</button>
-            <button type="submit" method="POST" formaction="/event/<%=event.id%>?_method=DELETE">delete</button>
+        </form>
+        <form action = "/event/<%=event.id%>?_method=DELETE">
+            <button type="submit" method="POST" formaction="/event/<%=event.id%>?_method=DELETE" >delete</button>
         </form>
     </div>
 

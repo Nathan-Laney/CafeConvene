@@ -1,1 +1,55 @@
-<h1>edit form</h1>
+<%- include('../partials/header.ejs') %>
+
+    <!-- START BODY CONTENT -->
+    <div class="container m-5">
+        <form method = "POST" action = "/event/<%= event.id%>?_method=PUT">
+            <!-- Title infobox -->
+            <div class="form-group pb-2">
+                <label for="title">Event Name:</label>
+                <textarea class="form-control" id="title" name="title" rows="1"></textarea>
+            </div>
+            <!-- Details infobox -->
+            <div class="form-group pb-2">
+                <label for="details">Event Details:</label>
+                <textarea class="form-control" id="details" name="details" rows="3"></textarea>
+            </div>
+            <!-- Dropdown -->
+            <div class="form-group pb-2">
+                <label for="category">Event Type:</label>
+                <select class="form-control" id="category" name="category">
+                    <option selected disabled>Select an Event Type</option>
+                    <option value="Coffee Tasting">Coffee Tasting</option>
+                    <option value="Latte Art Masterclass">Latte Art Masterclass</option>
+                    <option value="New Roast Launch">New Roast Launch</option>
+                    <option value="New Cafe Opening">New Cafe Opening</option>
+                    <option value="Sale">Sale</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group pb-2">
+                <label for="location">Location:</label>
+                <textarea class="form-control" id="location" name="location" rows="1"></textarea>
+            </div>
+            <!-- <div class="form-group pb-2">
+                <label for="emailInput">Email Address:</label>
+                <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
+            </div> -->
+
+            <div class="form-group pb-2">
+                <label for="start_datetime">Event Start:</label>
+                <input class="form-control" type="datetime-local" id="start_datetime" name="start_datetime">
+            </div>
+            <div class="form-group pb-2">
+                <label for="end_datetime">Event End:</label>
+                <input class="form-control" type="datetime-local" id="end_datetime" name="end_datetime">
+            </div>
+            <div class="form-group pb-2">
+                <label for="image">Select Image:</label>
+                <input class="form-control" type="file" id="image" name="image" accept="image/*">
+            </div>
+            <input class="btn btn-primary mt-3 text-right" type="submit" value="Submit">
+        </form>
+    </div>
+    
+    <!-- END BODY CONTENT -->
+<%- include('../partials/footer.ejs') %>

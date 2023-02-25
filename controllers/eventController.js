@@ -64,14 +64,14 @@ exports.update = (req, res, next)=>{
 // delete /events:id: update the event
 
 exports.delete = (req, res, next)=>{
-    // res.send('delete event with id ' + req.params.id);
-    let id = req.params.id;
-    if (model.deleteById(id)) {
-        res.redirect('/event');
-    } else {
-        let err = new Error('Cannot find event with ID of ' + id);
-        err.status = 404;
-        next(err);
-    }
+    res.send('delete event with id ' + req.params.id);
+    // let id = req.params.id;
+    // if (model.deleteById(id)) {
+    //     res.redirect('/event');
+    // } else {
+    //     let err = new Error('Cannot find event with ID of ' + id);
+    //     err.status = 404;
+    //     next(err);
+    // }
     
 };
