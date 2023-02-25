@@ -22,6 +22,7 @@
             <p class="mb-0"><strong>Event End:</strong> <%= event.start_datetime%></p>
         </div>
         <div id="event"><%= event.details%></div>
+        <div id="image"><img src='<%= event.image%>'></div>
         <form>
             <button type="submit" formmethod="GET" formaction="/event/<%=event.id%>/edit">Edit</button>
         </form>
@@ -30,4 +31,4 @@
         </form>
     </div>
 
-<%- include('../partials/header.ejs') %>
+<%- include('../partials/footer.ejs') %>

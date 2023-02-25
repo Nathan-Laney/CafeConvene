@@ -15,3 +15,4 @@ exports.about = (req, res)=>{
 exports.contact = (req, res)=>{
     res.render('./contact');
 };
+

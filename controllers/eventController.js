@@ -18,8 +18,11 @@ exports.new = (req, res)=>{
 // POST /events: create a new
 exports.create = (req, res)=>{
     let event = req.body;
-    model.save(event);
     console.log(event);
+    let image = req.files.image;
+    console.log(image);
+    console.log("-------------")
+    model.save(event, image);
     res.redirect('./event')
 };
 

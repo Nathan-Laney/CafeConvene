@@ -1,5 +1,6 @@
 const { DateTime } = require('luxon');
 const {v4: uuidv4} = require('uuid');
+const path = require('path');
 
 const events = [
 // {
@@ -22,7 +23,7 @@ const events = [
     location: '514 E 36th Street, Charlotte, NC 28205',
     start_datetime: DateTime.now().toLocaleString(DateTime.DATETIME_SHORT),
     end_datetime: DateTime.now().toLocaleString(DateTime.DATETIME_SHORT),
-    image: ''
+    image: '/static/hex-form.png'
 },
 {
     id: '2',
@@ -33,7 +34,7 @@ const events = [
     location: '1824 Statesville Ave. 101, Charlotte, NC 28206 ',
     start_datetime: DateTime.now().toLocaleString(DateTime.DATETIME_SHORT),
     end_datetime: DateTime.now().toLocaleString(DateTime.DATETIME_SHORT),
-    image: ''
+    image: '/static/hex-form.png'
 },
 {
     id: '3',
@@ -44,7 +45,7 @@ const events = [
     location: '4500 Old Pineville Road, Charlotte, NC 28217',
     start_datetime: DateTime.now().toLocaleString(DateTime.DATETIME_SHORT),
     end_datetime: DateTime.now().toLocaleString(DateTime.DATETIME_SHORT),
-    image: ''
+    image: '/static/hex-form.png'
 },
 {
     id: '4',
@@ -55,7 +56,7 @@ const events = [
     location: '821 W 1st St, Charlotte, NC 28202',
     start_datetime: DateTime.now().toLocaleString(DateTime.DATETIME_SHORT),
     end_datetime: DateTime.now().toLocaleString(DateTime.DATETIME_SHORT),
-    image: ''
+    image: '/static/hex-form.png'
 },
 {
     id: '5',
@@ -66,7 +67,7 @@ const events = [
     location: '136 E. 36th St., Charlotte, NC 28205',
     start_datetime: DateTime.now().toLocaleString(DateTime.DATETIME_SHORT),
     end_datetime: DateTime.now().toLocaleString(DateTime.DATETIME_SHORT),
-    image: ''
+    image: '/static/hex-form.png'
 },
 {
     id: '6',
@@ -77,7 +78,7 @@ const events = [
     location: '224 E 7th St, Charlotte, NC 28202',
     start_datetime: DateTime.now().toLocaleString(DateTime.DATETIME_SHORT),
     end_datetime: DateTime.now().toLocaleString(DateTime.DATETIME_SHORT),
-    image: ''
+    image: '/static/hex-form.png'
 }
 ];
 
@@ -97,11 +98,14 @@ exports.findAllCategories = function() {
     return eventCategories;
 };
 
-exports.save = function(event) {
+exports.save = function(event, image) {
     event.id = uuidv4()
     event.start_datetime = DateTime.fromISO(event.start_datetime_pre).toLocaleString(DateTime.DATETIME_SHORT);
     event.end_datetime = DateTime.fromISO(event.end_datetime_pre).toLocaleString(DateTime.DATETIME_SHORT);
-
+    if (image) {
+        image.mv(__dirname + '/../public/upload/' + image.name);
+    };
+    event.image = '/upload/' + image.name;
     events.push(event);
 };
 
