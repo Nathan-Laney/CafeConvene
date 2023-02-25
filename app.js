@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const methodOverride = require('method-override');
 const eventRoutes = require('./routes/eventRoutes');
 const baseRoutes = require('./routes/baseRoutes');
+const fileUpload = require('express-fileupload');
 
 // create app
 const app = express();

@@ -2,50 +2,50 @@
 
     <!-- START BODY CONTENT -->
     <div class="container m-5">
-        <form>
+        <form action='/event' method="POST">
             <!-- Title infobox -->
             <div class="form-group pb-2">
-                <label for="eventNameInput">Event Name:</label>
-                <textarea class="form-control" id="eventNameInput" rows="1"></textarea>
+                <label for="title">Event Name:</label>
+                <textarea class="form-control" id="title" name="title" rows="1"></textarea>
             </div>
             <!-- Details infobox -->
             <div class="form-group pb-2">
-                <label for="eventDetailsInput">Event Details:</label>
-                <textarea class="form-control" id="eventDetailsInput" rows="3"></textarea>
+                <label for="details">Event Details:</label>
+                <textarea class="form-control" id="details" name="details" rows="3"></textarea>
             </div>
             <!-- Dropdown -->
             <div class="form-group pb-2">
-                <label for="exampleFormControlSelect1">Event Type:</label>
-                <select class="form-control" id="exampleFormControlSelect1">
+                <label for="category">Event Type:</label>
+                <select class="form-control" id="category" name="category">
                     <option selected disabled>Select an Event Type</option>
-                    <option value="1">Coffee Tasting</option>
-                    <option value="2">Latte Art Masterclass</option>
-                    <option value="3">New Roast Launch</option>
-                    <option value="4">New Cafe Opening</option>
-                    <option value="5">Sale</option>
-                    <option value="99">Other</option>
+                    <option value="Coffee Tasting">Coffee Tasting</option>
+                    <option value="Latte Art Masterclass">Latte Art Masterclass</option>
+                    <option value="New Roast Launch">New Roast Launch</option>
+                    <option value="New Cafe Opening">New Cafe Opening</option>
+                    <option value="Sale">Sale</option>
+                    <option value="Other">Other</option>
                 </select>
             </div>
             <div class="form-group pb-2">
-                <label for="eventLocationInput">Location:</label>
-                <textarea class="form-control" id="eventLocationInput" rows="1"></textarea>
+                <label for="location">Location:</label>
+                <textarea class="form-control" id="location" name="location" rows="1"></textarea>
             </div>
-            <div class="form-group pb-2">
+            <!-- <div class="form-group pb-2">
                 <label for="emailInput">Email Address:</label>
                 <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
-            </div>
+            </div> -->
 
             <div class="form-group pb-2">
-                <label for="eventStartDateTime">Event Start:</label>
-                <input class="form-control" type="datetime-local" id="eventStartDateTime" name="eventStartDateTime">
+                <label for="start_datetime">Event Start:</label>
+                <input class="form-control" type="datetime-local" id="start_datetime" name="start_datetime">
             </div>
             <div class="form-group pb-2">
-                <label for="eventEndDateTime">Event End:</label>
-                <input class="form-control" type="datetime-local" id="eventEndDateTime" name="eventEndDateTime">
+                <label for="end_datetime">Event End:</label>
+                <input class="form-control" type="datetime-local" id="end_datetime" name="end_datetime">
             </div>
             <div class="form-group pb-2">
-                <label for="imageUpload">Select Image:</label>
-                <input class="form-control" type="file" id="imageUpload" name="imageUpload" accept="image/*">
+                <label for="image">Select Image:</label>
+                <input class="form-control" type="file" id="image" name="image" accept="image/*">
             </div>
             <input class="btn btn-primary mt-3 text-right" type="submit" value="Submit">
         </form>
