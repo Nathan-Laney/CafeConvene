@@ -6,19 +6,19 @@
             <!-- Title infobox -->
             <div class="form-group pb-2">
                 <label for="title">Event Name:</label>
-                <textarea class="form-control" id="title" name="title" rows="1"></textarea>
+                <textarea class="form-control" id="title" name="title" value = "<%= event.title%>" rows="1"><%= event.title%></textarea>
             </div>
             <!-- Details infobox -->
             <div class="form-group pb-2">
                 <label for="details">Event Details:</label>
-                <textarea class="form-control" id="details" name="details" rows="3"></textarea>
+                <textarea class="form-control" id="details" name="details" value = "<%= event.details%>" rows="3"><%= event.details%></textarea>
             </div>
             <!-- Dropdown -->
             <div class="form-group pb-2">
                 <label for="category">Event Type:</label>
                 <select class="form-control" id="category" name="category">
-                    <option selected disabled>Select an Event Type</option>
-                    <option value="Coffee Tasting">Coffee Tasting</option>
+                    
+                    <option value="Coffee Tasting" >Coffee Tasting</option>
                     <option value="Latte Art Masterclass">Latte Art Masterclass</option>
                     <option value="New Roast Launch">New Roast Launch</option>
                     <option value="New Cafe Opening">New Cafe Opening</option>
@@ -28,7 +28,7 @@
             </div>
             <div class="form-group pb-2">
                 <label for="location">Location:</label>
-                <textarea class="form-control" id="location" name="location" rows="1"></textarea>
+                <textarea class="form-control" id="location" name="location" value = "<%= event.location%>" rows="1"><%= event.location%></textarea>
             </div>
             <!-- <div class="form-group pb-2">
                 <label for="emailInput">Email Address:</label>
@@ -36,12 +36,12 @@
             </div> -->
 
             <div class="form-group pb-2">
-                <label for="start_datetime">Event Start:</label>
-                <input class="form-control" type="datetime-local" id="start_datetime" name="start_datetime">
+                <label for="start_datetime_pre">Event Start:</label>
+                <input class="form-control" type="datetime-local" id="start_datetime_pre" value = "<%= event.start_datetime_pre%>" name="start_datetime_pre">
             </div>
             <div class="form-group pb-2">
-                <label for="end_datetime">Event End:</label>
-                <input class="form-control" type="datetime-local" id="end_datetime" name="end_datetime">
+                <label for="end_datetime_pre">Event End:</label>
+                <input class="form-control" type="datetime-local" id="end_datetime_pre" value = "<%= event.end_datetime_pre%>" name="end_datetime_pre">
             </div>
             <div class="form-group pb-2">
                 <label for="image">Select Image:</label>

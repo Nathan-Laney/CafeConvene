@@ -15,11 +15,11 @@
 
     <div class = "container m-5">
         <h4><%= event.title %></h4>
-        <small>A <% event.category%> event hosted by <%=event.host_name%></small>
+        <small>A <%= event.category%> event hosted by <%=event.host_name%></small>
         <div class="container m-5"><p class="mb-0">
-            <p class="mb-0"><strong>Location:</strong> <% event.location%> </p>
-            <p class="mb-0"><strong>Event Start:</strong> <% event.end_datetime%></p>
-            <p class="mb-0"><strong>Event End:</strong> <% event.start_datetime%></p>
+            <p class="mb-0"><strong>Location:</strong> <%= event.location%> </p>
+            <p class="mb-0"><strong>Event Start:</strong> <%= event.end_datetime%></p>
+            <p class="mb-0"><strong>Event End:</strong> <%= event.start_datetime%></p>
         </div>
         <div id="event"><%= event.details%></div>
         <form>
