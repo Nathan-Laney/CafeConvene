@@ -37,7 +37,7 @@ mongoose.connect(url)
 
 app.use(
     session({
-        secret: "lkasjdlkajslkjdlskajldkjals",
+        secret: "REMOVED",
         resave: false,
         saveUninitialized: false,
         store: new MongoStore({mongoUrl: 'mongodb://127.0.0.1:27017/demos'}),
