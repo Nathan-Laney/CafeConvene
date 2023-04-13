@@ -2,21 +2,21 @@
 
     <!-- START BODY CONTENT -->
     <div class="container m-5">
-        <form method = "POST" action = "/event/<%= event.id%>?_method=PUT">
+        <form method = "POST" enctype="multipart/form-data" action = "/event/<%= event.id%>?_method=PUT">
             <!-- Title infobox -->
             <div class="form-group pb-2">
                 <label for="title">Event Name:</label>
-                <textarea class="form-control" id="title" name="title" value = "<%= event.title%>" rows="1"><%= event.title%></textarea>
+                <textarea class="form-control" id="title" name="title" value = "<%= event.title%>" rows="1" required><%= event.title%></textarea>
             </div>
             <!-- Details infobox -->
             <div class="form-group pb-2">
                 <label for="details">Event Details:</label>
-                <textarea class="form-control" id="details" name="details" value = "<%= event.details%>" rows="3"><%= event.details%></textarea>
+                <textarea class="form-control" id="details" name="details" value = "<%= event.details%>" rows="3" required><%= event.details%></textarea>
             </div>
             <!-- Dropdown -->
             <div class="form-group pb-2">
                 <label for="category">Event Type:</label>
-                <select class="form-control" id="category" name="category">
+                <select class="form-control" id="category" name="category" required>
                     
                     <option value="Coffee Tasting" >Coffee Tasting</option>
                     <option value="Latte Art Masterclass">Latte Art Masterclass</option>
@@ -28,26 +28,22 @@
             </div>
             <div class="form-group pb-2">
                 <label for="location">Location:</label>
-                <textarea class="form-control" id="location" name="location" value = "<%= event.location%>" rows="1"><%= event.location%></textarea>
+                <textarea class="form-control" id="location" name="location" value = "<%= event.location%>" rows="1" required><%= event.location%></textarea>
             </div>
-            <!-- <div class="form-group pb-2">
-                <label for="emailInput">Email Address:</label>
-                <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
-            </div> -->
-
+            
             <div class="form-group pb-2">
-                <label for="start_datetime_pre">Event Start:</label>
-                <input class="form-control" type="datetime-local" id="start_datetime_pre" value = "<%= event.start_datetime_pre%>" name="start_datetime_pre">
+                <label for="start_datetime">Event Start:</label>
+                <input class="form-control" type="datetime-local" id="start_datetime" value = "<%= startISO%>" name="start_datetime" required>
             </div>
             <div class="form-group pb-2">
-                <label for="end_datetime_pre">Event End:</label>
-                <input class="form-control" type="datetime-local" id="end_datetime_pre" value = "<%= event.end_datetime_pre%>" name="end_datetime_pre">
+                <label for="end_datetime">Event End:</label>
+                <input class="form-control" type="datetime-local" id="end_datetime" value = "<%= endISO%>" name="end_datetime" required>
             </div>
             <div class="form-group pb-2">
                 <label for="image">Select Image:</label>
-                <input class="form-control" type="file" id="image" name="image" accept="image/*">
+                <input class="form-control" type="file" id="image" name="image" accept="image/*" required>
             </div>
-            <input class="btn btn-primary mt-3 text-right" type="submit" value="Submit" formmethod = "POST" formaction = "/event/<%= event.id%>?_method=PUT">
+            <input class="btn btn-primary mt-3 text-right" type="submit" value="Submit" enctype="multipart/form-data" formmethod = "POST" formaction = "/event/<%= event.id%>?_method=PUT">
         </form>
     </div>
     

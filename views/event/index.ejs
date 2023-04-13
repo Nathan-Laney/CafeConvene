@@ -5,9 +5,7 @@
             <p>Select a event to read</p>
             <% categories.forEach(category =>{ %>
                 <h3><%= category %></h3>
-
                 <% events.forEach(element =>{ %>
-
                     <% if(element.category === category) { %>
                         <a href="/event/<%= element.id %>"><p><%= element.title %></p></a>
     
@@ -15,8 +13,6 @@
     
     
                 <%}); %>
-
-
             <%});
         } else { %>
             <p>There are no events to display</p>
