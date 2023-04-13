@@ -1,27 +1,30 @@
 const express = require('express');
-const {fileUpload} = require('../middleware/fileUpload');
-const router = express.Router();
+const {fileUpload} = require('../middlewares/fileUpload');
 const controller = require('../controllers/eventController');
+const {isLoggedIn, isAuthor} = require('../middlewares/auth')
+const {validateID} = require('../middlewares/validator')
+const router = express.Router();
 
-// GET /events: send all events
+//GET /stories: send all stories to the user
 router.get('/', controller.index);
 
-// GET /events/new: send html form to create a event
-router.get('/new', controller.new);
+//GET /stories/new: send html form for creating a new story
+router.get('/new', isLoggedIn, controller.new);
 
-// POST /events: create a new event
-router.post('/', fileUpload, controller.create);
+//POST /stories: create a new story
 
-// GET /events:id: send details of event identified by id
-router.get('/:id', controller.show);
+router.post('/', isLoggedIn, controller.create);
 
-// GET /events:id/edit: send form to edit existing event
-router.get('/:id/edit', controller.edit);
+//GET /stories/:id: send details of story identified by id
+router.get('/:id', validateID, controller.show);
 
-// PUT /events:id: update the event
-router.put('/:id', fileUpload, controller.update);
+//GET /stories/:id/edit: send html form for editing an exising story
+router.get('/:id/edit', isLoggedIn, isAuthor, validateID, controller.edit);
 
-// delete /events:id: update the event
-router.delete('/:id', controller.delete);
+//PUT /stories/:id: update the story identified by id
+router.put('/:id', isLoggedIn, isAuthor, validateID, controller.update);
+
+//DELETE /stories/:id, delete the story identified by id
+router.delete('/:id', isLoggedIn, isAuthor, validateID, controller.delete);
 
 module.exports = router;

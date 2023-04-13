@@ -1,5 +1,5 @@
 const eventModel = require('../models/event');
-const {FileUpload} = require('../middleware/fileUpload')
+const {FileUpload} = require('../middlewares/fileUpload')
 const { DateTime } = require('luxon');
 
 
@@ -34,6 +34,7 @@ exports.create = (req, res, next)=>{
     console.log('define event model');
 
     let event = new eventModel(req.body);
+    event.host_name = req.session.user;
     event.image = "/upload/" + req.file.filename;
     console.log(event);
     

@@ -1,6 +1,6 @@
 <%- include('../partials/header.ejs') %>
 
-<!-- // {
+    <!-- // {
     //     id: '',
     //     title: '',
     //     category: '',
@@ -13,22 +13,39 @@
     // },
 -->
 
-    <div class = "container m-5">
-        <h4><%= event.title %></h4>
+    <div class="container m-5">
+        <h4>
+            <%= event.title %>
+        </h4>
         <small>A <%= event.category%> event hosted by <%=event.host_name%></small>
-        <div class="container m-5"><p class="mb-0">
-            <p class="mb-0"><strong>Location:</strong> <%= event.location%> </p>
-            <p class="mb-0"><strong>Event Start:</strong> <%= event.end_datetime%></p>
-            <p class="mb-0"><strong>Event End:</strong> <%= event.start_datetime%></p>
+        <div class="container m-5">
+            <p class="mb-0">
+            <p class="mb-0"><strong>Location:</strong>
+                <%= event.location%>
+            </p>
+            <p class="mb-0"><strong>Event Start:</strong>
+                <%= event.end_datetime%>
+            </p>
+            <p class="mb-0"><strong>Event End:</strong>
+                <%= event.start_datetime%>
+            </p>
         </div>
-        <div id="event"><%= event.details%></div>
+        <div id="event">
+            <%= event.details%>
+        </div>
         <div id="image"><img src="<%= event.image%>"></div>
-        <form>
-            <button type="submit" formmethod="GET" formaction="/event/<%=event.id%>/edit">Edit</button>
-        </form>
-        <form action = "/event/<%=event.id%>?_method=DELETE">
-            <button type="submit" formmethod="POST" formaction="/event/<%=event.id%>?_method=DELETE" >delete</button>
-        </form>
+        
+        <%if(user==event.author_id) {%>
+            <form>
+                <button type="submit" formmethod="GET" formaction="/event/<%= event.id%>/edit">Edit</button>
+                <button type="submit" formmethod="POST"
+                    formaction="/event/<%= event.id%>?_method=DELETE">Delete</button>
+                </form>
+            <!-- <form action = "/event/<%=event.id%>?_method=DELETE">
+                <button type="submit" formmethod="POST" formaction="/event/<%=event.id%>?_method=DELETE" >delete</button>
+            </form> -->
+            <%}%>
+                
     </div>
 
-<%- include('../partials/footer.ejs') %>
+    <%- include('../partials/footer.ejs') %>
