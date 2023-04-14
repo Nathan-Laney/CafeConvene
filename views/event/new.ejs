@@ -2,7 +2,7 @@
 
     <!-- START BODY CONTENT -->
     <div class="container m-5">
-        <form action='/event' method="POST" enctype="multipart/form-data">
+        <form action='/events' method="POST" enctype="multipart/form-data">
             <!-- Title infobox -->
             <div class="form-group pb-2">
                 <label for="title">Event Name:</label>
@@ -16,7 +16,7 @@
             <!-- Dropdown -->
             <div class="form-group pb-2">
                 <label for="category">Event Type:</label>
-                <select class="form-control" id="category" name="category" required>
+                <select class="form-control" id="category" name="category" required enum>
                     <option selected disabled>Select an Event Type</option>
                     <option value="Coffee Tasting">Coffee Tasting</option>
                     <option value="Latte Art Masterclass">Latte Art Masterclass</option>
@@ -30,16 +30,6 @@
                 <label for="location">Location:</label>
                 <textarea class="form-control" id="location" name="location" rows="1" required></textarea>
             </div>
-
-            <!-- <div class="form-group pb-2">
-                <label for="host_name">Host Name:</label>
-                <textarea class="form-control" id="host_name" name="host_name" rows="1" required></textarea>
-            </div> -->
-            <!-- <div class="form-group pb-2">
-                <label for="emailInput">Email Address:</label>
-                <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
-            </div> -->
-
             <div class="form-group pb-2">
                 <label for="start_datetime">Event Start:</label>
                 <input class="form-control" type="datetime-local" id="start_datetime" name="start_datetime" required>

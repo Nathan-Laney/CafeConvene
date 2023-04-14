@@ -1,48 +1,57 @@
-const eventModel = require('../models/event');
-const {FileUpload} = require('../middlewares/fileUpload')
+const model = require('../models/event');
+const { FileUpload } = require('../middlewares/fileUpload')
 const { DateTime } = require('luxon');
 
 
 // GET /events: send all events
-exports.index = (req, res, next)=>{
+exports.index = (req, res, next) => {
     // res.send('send all events');
-    // let events = eventModel.find();
-    // let categories = eventModel.findAllCategories();
+    // let events = model.find();
+    // let categories = model.findAllCategories();
     // console.log(categories);
     // res.render('./event/', {events, categories});
     //---------- proj3
-    const query = eventModel.distinct('category');
+    const query = model.distinct('category');
     const categoriesPromise = query.exec();
-    categoriesPromise.then((categories)=>{
+    categoriesPromise.then((categories) => {
         console.log("a + ", categories);
-        eventModel.find()
-        .then(events => res.render('./event/index', { events, categories }))
-        .catch(err => next(err));
+        model.find()
+            .then(events => res.render('./event/index', { events, categories }))
+            .catch(err => next(err));
     });
 
 };
 
-// GET /events/new: send html form to create a sto
-exports.new = (req, res, next)=>{
+exports.new = (req, res) => {
     res.render('./event/new');
 };
 
-// POST /events: create a new event
-exports.create = (req, res, next)=>{
-    // let event = req.body;
-    
-    console.log('define event model');
+exports.create = (req, res, next) => {
+    const eventData = req.body;
+    let event = {
+        category: eventData.category,
+        title: eventData.title,
+        details: eventData.details,
+        host_name: req.session.user,
+        start_datetime: eventData.start,
+        end_datetime: eventData.end,
+        location: eventData.location,
+    };
+    // Validate image was uploaded
+    if (req.files) {
+        event.image = req.files.filename;
+        // const image = req.files.filename;
+        // event.image = {
+        //     data: image.data,
+        //     filename: image.name,
+        //     contentType: image.mimetype
+        // }
+    }
 
-    let event = new eventModel(req.body);
-    event.host_name = req.session.user;
-    event.image = "/upload/" + req.file.filename;
-    console.log(event);
-    
-    event.save()
-        .then((event) => {
-            // console.log(event);
-            res.redirect('/event');
-        })
+    event = new model(event);
+
+    event.save()//insert the document to the database
+        .then(event => res.redirect('/events'))
         .catch(err => {
             if (err.name === 'ValidationError') {
                 err.status = 400;
@@ -51,21 +60,12 @@ exports.create = (req, res, next)=>{
         });
 };
 
-// GET /events:id: send details of event identified by 
-exports.show = (req, res, next)=>{
-    // res.send('send event with id ' + req.params.id);
-    
+exports.show = (req, res, next) => {
     let id = req.params.id;
-    if (!id.match(/^[0-9a-fA-F]{24}$/)) {
-        let err = new Error('Invalid event id ' + id);
-        err.status = 404;
-        next(err);
-    }
-
-    eventModel.findById(id)
+    //an objectId is a 24-bit Hex string
+    model.findById(id).populate('host_name', 'firstName lastName')
         .then(event => {
             if (event) {
-                console.log(event);
                 return res.render('./event/event', { event });
             } else {
                 let err = new Error('Cannot find a event with id ' + id);
@@ -76,98 +76,34 @@ exports.show = (req, res, next)=>{
         .catch(err => next(err));
 };
 
-// GET /events:id/edit: send form to edit existing event
-exports.edit = (req, res, next)=>{
-    // res.send('send the edit form');
-    
+exports.edit = (req, res, next) => {
     let id = req.params.id;
-    
-    if (!id.match(/^[0-9a-fA-F]{24}$/)) {
-        let err = new Error('Invalid event id ' + id);
-        err.status = 404;
-        next(err);
-    }
-
-    eventModel.findById(id)
+    model.findById(id)
         .then(event => {
-            if (event) {
-                console.log(event.start_datetime);
-                const startDate = new Date(event.start_datetime);
-                const endDate = new Date(event.end_datetime);
-                const startISO = startDate.toISOString().slice(0, 16);
-                const endISO = endDate.toISOString().slice(0, 16);
-                return res.render('./event/edit', { event, startISO, endISO });
-            } else {
-                let err = new Error('Cannot find a event with id ' + id);
-                err.status = 404;
-                next(err);
-            }
+            return res.render('./event/edit', { event });
         })
         .catch(err => next(err));
 };
 
-// PUT /events:id: update the sto
-exports.update = (req, res, next)=>{
-    // res.send('update event with id ' + req.params.id);
-
+exports.update = (req, res, next) => {
     let event = req.body;
     let id = req.params.id;
-    console.log(req);
-
-    event.image = "/upload/" + req.file.filename;
-    
-
-    if (!id.match(/^[0-9a-fA-F]{24}$/)) {
-        let err = new Error('Invalid event id ' + id);
-        err.status = 404;
-        next(err);
-    }
-    // console.log(req);
-    
-
-    eventModel.findByIdAndUpdate(id,event, {useFindAndModify:false, runValidators:true})
-    .then(event=>{
-        if(event) {
-            return res.redirect('/event/' + id)
-        }
-        else {
-            let err = new Error('Cannot find a event with id ' + id);
-            err.status = 404;
+    model.findByIdAndUpdate(id, event, { useFindAndModify: false, runValidators: true })
+        .then(event => {
+            res.redirect('/events');
+        })
+        .catch(err => {
+            if (err.name === 'ValidationError')
+                err.status = 400;
             next(err);
-        }
-    })
-    .catch(err => {
-        if (err.name === 'ValidationError') {
-            err.status = 400;
-        }
-        next(err);
-    });
+        });
 };
 
-// delete /events:id: delete the event
-
-exports.delete = (req, res, next)=>{
-    // res.send('delete event with id ' + req.params.id);
+exports.delete = (req, res, next) => {
     let id = req.params.id;
-    if (!id.match(/^[0-9a-fA-F]{24}$/)) {
-        let err = new Error('Invalid event id ' + id);
-        err.status = 404;
-        next(err);
-    }
-
-    eventModel.findByIdAndDelete(id, {useFindAndModify:false, runValidators:true})
-    .then(event=>{
-        if(event) {
-            return res.redirect('/event')
-        }
-        else {
-            let err = new Error('Cannot find a event with id ' + id);
-            err.status = 404;
-            next(err);
-        }
-    })
-    .catch(err => {
-        next(err);
-    });
-    
+    model.findByIdAndDelete(id, { useFindAndModify: false })
+        .then(event => {
+            res.redirect('/events');
+        })
+        .catch(err => next(err));
 };

@@ -148,19 +148,20 @@
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const eventSchema = new Schema({
-    title: {type: String, required: [true, 'title is required']},
-    category: {type: String, required: [true, 'category is required']},
-    host_name: {type: String, required: [true, 'host_name is required']},
-    details: {type: String, required: [true, 'details is required'], minLength: [10, 'The details should have at least 10 characters']},
-    location: {type: String, required: [true, 'location is required']},
-    start_datetime: {type: Date, required: [true, 'start_datetime is required']},
-    end_datetime: {type: Date, required: [true, 'end_datetime is required']},
-    image: {type: String, required: [true, 'image is required']},
-},
-{timestamps: true}
-);
 
+const eventSchema = new Schema({
+    category: { type: String, required: [true, 'Category is required'], enum: ['Gaming', 'School', 'Cinema', 'Event', 'Other'] },
+    title: { type: String, required: [true, 'Title is required'] },
+    details: { type: String, required: [true, 'Details are required'], minlength: [10, 'Details must be at least 10 characters long'] },
+    host_name: { type: Schema.Types.ObjectId, ref: 'User', required: [true, 'A host is required'] },
+    start_datetime: { type: Date, required: [true, 'Start time is required'] },
+    end_datetime: { type: Date, required: [true, 'End time is required'] },
+    location: { type: String, required: [true, 'Location is required'] },
+    image: { type: String, required: [true, 'image is required'] },
+},
+    { timestamps: true }
+);
+0
 
 // collection name is events in database
 module.exports = mongoose.model('Event', eventSchema);

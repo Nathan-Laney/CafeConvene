@@ -11,7 +11,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
-var imgModel = require('./models/image');
+const imgModel = require('./models/image');
 
 //create app
 const app = express();
@@ -19,7 +19,7 @@ const app = express();
 //configure app
 let port = 3000;
 let host = '127.0.0.1';
-let url = 'mongodb://127.0.0.1:27017/CafeConvene'; // TODO: Place cluster URL
+let url = 'mongodb+srv://nlaney1:L1uNcry9UynUC4DJ@cluster0.cxivrvg.mongodb.net/test'; // TODO: Place cluster URL
 app.set('view engine', 'ejs');
 
 
@@ -37,7 +37,7 @@ mongoose.connect(url)
 
 app.use(
     session({
-        secret: "REMOVED",
+        secret: "lkasjdlkajslkjdlskajldkjals",
         resave: false,
         saveUninitialized: false,
         store: new MongoStore({mongoUrl: 'mongodb://127.0.0.1:27017/demos'}),
