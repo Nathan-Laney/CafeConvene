@@ -28,6 +28,9 @@ const upload = multer({
 }).single('image');
 
 exports.fileUpload = (req, res, next) => {
+    console.log('______________________');
+    console.log(req.body);
+    console.log('______________________');
     upload(req, res, err => {
         if (err) {
             err.status = 400;

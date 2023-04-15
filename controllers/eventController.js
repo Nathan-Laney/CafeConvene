@@ -28,6 +28,9 @@ exports.new = (req, res) => {
 
 exports.create = (req, res, next) => {
     const eventData = req.body;
+    console.log('-------------------------------------');
+    console.log(req.body);
+    console.log('-------------------------------------');
     let event = {
         category: eventData.category,
         title: eventData.title,

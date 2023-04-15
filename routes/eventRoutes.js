@@ -39,7 +39,7 @@ router.get('/', controller.index);
 
 router.get('/new', isLoggedIn, controller.new);
 
-router.post('/', isLoggedIn, controller.create);
+router.post('/create', fileUpload, isLoggedIn, controller.create);
 
 router.get('/:id', validateID, controller.show);
 

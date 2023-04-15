@@ -40,7 +40,7 @@ app.use(
         secret: "lkasjdlkajslkjdlskajldkjals",
         resave: false,
         saveUninitialized: false,
-        store: new MongoStore({mongoUrl: 'mongodb://127.0.0.1:27017/demos'}),
+        store: new MongoStore({mongoUrl: url}),
         cookie: {maxAge: 60*60*1000}
         })
 );
