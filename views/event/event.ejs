@@ -17,7 +17,7 @@
         <h4>
             <%= event.title %>
         </h4>
-        <small>A <%= event.category%> event hosted by <%=event.host_name%></small>
+        <small>A <%= event.category%> event hosted by <%=event.host_name.firstName%> <%=event.host_name.lastName%></small>
         <div class="container m-5">
             <p class="mb-0">
             <p class="mb-0"><strong>Location:</strong>
@@ -35,7 +35,7 @@
         </div>
         <div id="image"><img src="<%= event.image%>"></div>
         
-        <%if(user==event.author_id) {%>
+        <%if( user == event.host_name ) {%>
             <form>
                 <button type="submit" formmethod="GET" formaction="/event/<%= event.id%>/edit">Edit</button>
                 <button type="submit" formmethod="POST"
@@ -45,7 +45,5 @@
                 <button type="submit" formmethod="POST" formaction="/event/<%=event.id%>?_method=DELETE" >delete</button>
             </form> -->
             <%}%>
-                
     </div>
-
     <%- include('../partials/footer.ejs') %>

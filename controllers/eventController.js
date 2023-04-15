@@ -5,12 +5,6 @@ const { DateTime } = require('luxon');
 
 // GET /events: send all events
 exports.index = (req, res, next) => {
-    // res.send('send all events');
-    // let events = model.find();
-    // let categories = model.findAllCategories();
-    // console.log(categories);
-    // res.render('./event/', {events, categories});
-    //---------- proj3
     const query = model.distinct('category');
     const categoriesPromise = query.exec();
     categoriesPromise.then((categories) => {
@@ -19,7 +13,6 @@ exports.index = (req, res, next) => {
             .then(events => res.render('./event/index', { events, categories }))
             .catch(err => next(err));
     });
-
 };
 
 exports.new = (req, res) => {
@@ -27,22 +20,12 @@ exports.new = (req, res) => {
 };
 
 exports.create = (req, res, next) => {
-    const eventData = req.body;
-    console.log('-------------------------------------');
-    console.log(req.body);
-    console.log('-------------------------------------');
-    let event = {
-        category: eventData.category,
-        title: eventData.title,
-        details: eventData.details,
-        host_name: req.session.user,
-        start_datetime: eventData.start,
-        end_datetime: eventData.end,
-        location: eventData.location,
-    };
+    const event = req.body;
+    event.host_name = req.session.user;
+    
     // Validate image was uploaded
-    if (req.files) {
-        event.image = req.files.filename;
+    if (req.file) {
+        event.image = req.file.filename;
         // const image = req.files.filename;
         // event.image = {
         //     data: image.data,
@@ -51,10 +34,13 @@ exports.create = (req, res, next) => {
         // }
     }
 
-    event = new model(event);
+    console.log('------------------controller-------------------');
+    console.log(req.body);
+    console.log('-------------------------------------');
+    eventModel = new model(event);
 
-    event.save()//insert the document to the database
-        .then(event => res.redirect('/events'))
+    eventModel.save()//insert the document to the database
+        .then(event => res.redirect('/event'))
         .catch(err => {
             if (err.name === 'ValidationError') {
                 err.status = 400;

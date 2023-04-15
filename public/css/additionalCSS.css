@@ -39,3 +39,8 @@ body {
     margin-top : 70px;
     /* z-index: -998; */
 }
+
+#flash {
+    background: #aa3333;
+    color:#fff;
+}

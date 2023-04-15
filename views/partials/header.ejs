@@ -59,3 +59,21 @@
             </ul>
         </div>
     </nav>
+
+    <% if(errorMessages.length > 0) {%>
+        <% errorMessages.forEach(message=>{%>
+            <div id='flash'>
+                <p>asdlaksj</p>
+                <%=message%>
+            </div>
+            <%});%>
+                <%}%>
+    
+                    <% if(successMessages.length > 0) {%>
+    
+                        <% successMessages.forEach(message=>{%>
+                            <div id='flash'>
+                                <%=message%>
+                            </div>
+                            <%});%>
+                                <%}%>

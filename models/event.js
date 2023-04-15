@@ -150,7 +150,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const eventSchema = new Schema({
-    category: { type: String, required: [true, 'Category is required'], enum: ['Gaming', 'School', 'Cinema', 'Event', 'Other'] },
+    category: { type: String, required: [true, 'Category is required'], enum: ['Coffee Tasting', 'Latte Art Masterclass', 'New Roast Launch', 'New Cafe Opening', 'Sale','Other'] },
     title: { type: String, required: [true, 'Title is required'] },
     details: { type: String, required: [true, 'Details are required'], minlength: [10, 'Details must be at least 10 characters long'] },
     host_name: { type: Schema.Types.ObjectId, ref: 'User', required: [true, 'A host is required'] },

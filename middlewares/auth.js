@@ -10,6 +10,10 @@ exports.isGuest = (req, res, next) => {
 }
 
 exports.isLoggedIn = (req, res, next) => {
+    console.log('---------auth.js--------');
+    console.log(req.body);
+    console.log('-----------------');
+
     if (req.session.user) {
         return next();
     } else {
