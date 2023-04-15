@@ -35,15 +35,6 @@
         </div>
         <div id="image"><img src="/upload/<%= event.image %>"></div>
         
-        <%if( user == event.host_name._id ) {%>
-            <form>
-                <button type="submit" formmethod="GET" formaction="/event/<%= event.id%>/edit">Edit</button>
-                <button type="submit" formmethod="POST"
-                    formaction="/event/<%= event.id%>?_method=DELETE">Delete</button>
-                </form>
-            <!-- <form action = "/event/<%=event.id%>?_method=DELETE">
-                <button type="submit" formmethod="POST" formaction="/event/<%=event.id%>?_method=DELETE" >delete</button>
-            </form> -->
-            <%}%>
+        
     </div>
     <%- include('../partials/footer.ejs') %>

@@ -37,9 +37,9 @@ exports.create = (req, res, next) => {
     console.log('------------------controller-------------------');
     console.log(req.body);
     console.log('-------------------------------------');
-    event = new model(event);
+    eventModel = new model(event);
 
-    event.save()//insert the document to the database
+    eventModel.save()//insert the document to the database
         .then(event => res.redirect('/event'))
         .catch(err => {
             if (err.name === 'ValidationError') {

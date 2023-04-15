@@ -6,6 +6,13 @@
         <p>You have created these events</p>
         <%events.forEach(event =>{%>
             <a href="/event/<%= event.id%>"><p><%=event.title%></p></a>
+            
+                <form>
+                    <button type="submit" formmethod="GET" formaction="/event/<%= event.id%>/edit">Edit</button>
+                    <button type="submit" formmethod="POST"
+                        formaction="/event/<%= event.id%>?_method=DELETE">Delete</button>
+                    </form>
+                
         <%});
     } else {%>
         <p>You have not created any events</p>
