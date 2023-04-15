@@ -22,12 +22,12 @@ exports.isLoggedIn = (req, res, next) => {
     }
 }
 
-exports.isAuthor = (req, res, next) => {
+exports.isHost = (req, res, next) => {
     let id = req.params.id;
     Event.findById(id)
-        .then(story => {
-            if (story) {
-                if (story.host == req.session.user) {
+        .then(e => {
+            if (e) {
+                if (e.host_name == req.session.user) {
                     next();
                 } else {
                     let err = new Error('Unauthorized Access to resource');

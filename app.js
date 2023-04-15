@@ -11,7 +11,6 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
-const imgModel = require('./models/image');
 
 //create app
 const app = express();
@@ -49,6 +48,7 @@ app.use(flash());
 app.use((req, res, next) => {
     //console.log(req.session);
     res.locals.user = req.session.user||null;
+    // console.log(res.locals.user)
     res.locals.errorMessages = req.flash('error');
     res.locals.successMessages = req.flash('success');
     next();

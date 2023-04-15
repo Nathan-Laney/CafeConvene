@@ -64,9 +64,13 @@ exports.login = (req, res, next) => {
 
 exports.profile = (req, res, next) => {
     let id = req.session.user;
-    Promise.all([model.findById(id), Event.find({ author: id })])
+    Promise.all([model.findById(id), Event.find({ host_name: id })])
         .then(results => {
             const [user, events] = results;
+            console.log(results)
+            for( e in events) {
+                console.log(e)
+            }
             res.render('./user/profile', { user, events })
         })
         .catch(err => next(err));

@@ -1,6 +1,6 @@
 // const express = require('express');
 // const controller = require('../controllers/eventController');
-// const {isLoggedIn, isAuthor} = require('../middlewares/auth')
+// const {isLoggedIn, isHost} = require('../middlewares/auth')
 // const {validateID} = require('../middlewares/validator')
 // const router = express.Router();
 
@@ -17,20 +17,20 @@
 // router.get('/:id', validateID, controller.show);
 
 // //GET /stories/:id/edit: send html form for editing an exising story
-// router.get('/:id/edit', isLoggedIn, isAuthor, validateID, controller.edit);
+// router.get('/:id/edit', isLoggedIn, isHost, validateID, controller.edit);
 
 // //PUT /stories/:id: update the story identified by id
-// router.put('/:id', isLoggedIn, isAuthor, validateID, controller.update);
+// router.put('/:id', isLoggedIn, isHost, validateID, controller.update);
 
 // //DELETE /stories/:id, delete the story identified by id
-// router.delete('/:id', isLoggedIn, isAuthor, validateID, controller.delete);
+// router.delete('/:id', isLoggedIn, isHost, validateID, controller.delete);
 
 // module.exports = router;
 
 const express = require('express');
 const controller = require('../controllers/eventController');
 const {fileUpload} = require('../middlewares/fileUpload');
-const {isLoggedIn, isAuthor} = require('../middlewares/auth');
+const {isLoggedIn, isHost} = require('../middlewares/auth');
 const {validateID} = require('../middlewares/validator');
 
 const router = express.Router();
@@ -43,10 +43,10 @@ router.post('/create', fileUpload, isLoggedIn, controller.create);
 
 router.get('/:id', validateID, controller.show);
 
-router.get('/:id/edit', validateID, isLoggedIn, isAuthor, controller.edit);
+router.get('/:id/edit', validateID, isLoggedIn, isHost, controller.edit);
 
-router.put('/:id', validateID, isLoggedIn, isAuthor, controller.update);
+router.put('/:id', fileUpload, validateID, isLoggedIn, isHost, controller.update);
 
-router.delete('/:id', validateID, isLoggedIn, isAuthor, controller.delete);
+router.delete('/:id', validateID, isLoggedIn, isHost, controller.delete);
 
 module.exports = router

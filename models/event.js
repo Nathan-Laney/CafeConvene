@@ -161,7 +161,7 @@ const eventSchema = new Schema({
 },
     { timestamps: true }
 );
-0
+
 
 // collection name is events in database
 module.exports = mongoose.model('Event', eventSchema);

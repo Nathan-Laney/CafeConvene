@@ -33,9 +33,9 @@
         <div id="event">
             <%= event.details%>
         </div>
-        <div id="image"><img src="<%= event.image%>"></div>
+        <div id="image"><img src="/upload/<%= event.image %>"></div>
         
-        <%if( user == event.host_name ) {%>
+        <%if( user == event.host_name._id ) {%>
             <form>
                 <button type="submit" formmethod="GET" formaction="/event/<%= event.id%>/edit">Edit</button>
                 <button type="submit" formmethod="POST"
