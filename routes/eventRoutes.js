@@ -31,7 +31,7 @@ const express = require('express');
 const controller = require('../controllers/eventController');
 const {fileUpload} = require('../middlewares/fileUpload');
 const {isLoggedIn, isHost} = require('../middlewares/auth');
-const {validateID} = require('../middlewares/validator');
+const {validateID, validateResult} = require('../middlewares/validator');
 
 const router = express.Router();
 
@@ -39,7 +39,7 @@ router.get('/', controller.index);
 
 router.get('/new', isLoggedIn, controller.new);
 
-router.post('/create', fileUpload, isLoggedIn, controller.create);
+router.post('/create', fileUpload, isLoggedIn, validateResult, controller.create);
 
 router.get('/:id', validateID, controller.show);
 

@@ -8,3 +8,15 @@ exports.validateID = (req, res, next) => {
     }
     next();
 }
+
+exports.validateResult = (req, res, next)=>{
+    let user = new model(req.body);
+    if (!errors.isEmpty()) {
+        errors.array().forEach(error => {
+            req.flash("error", error.msg);
+        })
+        return res.redirect("back");
+    } else {
+        return next();
+    }
+}

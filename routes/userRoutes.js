@@ -3,8 +3,6 @@ const controller = require('../controllers/userController');
 const {isGuest} = require('../middlewares/auth');
 const {isLoggedIn} = require('../middlewares/auth');
 
-
-
 const router = express.Router();
 
 //GET /users/new: send html form for creating a new user account
