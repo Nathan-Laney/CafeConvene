@@ -1,6 +1,6 @@
 <%- include('../partials/header.ejs') %>
 
-    <!-- // {
+<!-- // {
     //     id: '',
     //     title: '',
     //     category: '',
@@ -13,28 +13,61 @@
     // },
 -->
 
-    <div class="container m-5">
-        <h4>
-            <%= event.title %>
-        </h4>
-        <small>A <%= event.category%> event hosted by <%=event.host_name.firstName%> <%=event.host_name.lastName%></small>
-        <div class="container m-5">
-            <p class="mb-0">
-            <p class="mb-0"><strong>Location:</strong>
-                <%= event.location%>
-            </p>
-            <p class="mb-0"><strong>Event Start:</strong>
-                <%= event.end_datetime%>
-            </p>
-            <p class="mb-0"><strong>Event End:</strong>
-                <%= event.start_datetime%>
-            </p>
-        </div>
-        <div id="event">
-            <%= event.details%>
-        </div>
-        <div id="image"><img src="/upload/<%= event.image %>"></div>
-        
-        
-    </div>
-    <%- include('../partials/footer.ejs') %>
+<div class="container m-5">
+	<h4><%= event.title %></h4>
+	<small
+		>A <%= event.category%> event hosted by <%=event.host_name.firstName%>
+		<%=event.host_name.lastName%></small
+	>
+	<div class="container m-5">
+		<p class="mb-0"></p>
+		<p class="mb-0">
+			<strong>Location:</strong>
+			<%= event.location%>
+		</p>
+		<p class="mb-0">
+			<strong>Event Start:</strong>
+			<%= event.end_datetime%>
+		</p>
+		<p class="mb-0">
+			<strong>Event End:</strong>
+			<%= event.start_datetime%>
+		</p>
+	</div>
+	<div id="event"><%= event.details%></div>
+	<div id="image"><img src="/upload/<%= event.image %>" /></div>
+
+	<div>
+        <h4>RSVP</h4>
+		<form>
+			<button
+				type="submit"
+				formmethod="POST"
+				formaction="/event/<%= event.id%>/rsvp"
+                name="RSVP"
+				value="YES"
+			>
+				Yes
+			</button>
+			<button
+				type="submit"
+				formmethod="POST"
+				formaction="/event/<%= event.id%>/rsvp"
+                name="RSVP"
+				value="NO"
+			>
+				NO
+			</button>
+            <button
+				type="submit"
+				formmethod="POST"
+				formaction="/event/<%= event.id%>/rsvp"
+                name="RSVP"
+				value="MAYBE"
+			>
+				MAYBE
+			</button>
+		</form>
+	</div>
+</div>
+<%- include('../partials/footer.ejs') %>

@@ -49,4 +49,6 @@ router.put('/:id', fileUpload, validateID, isLoggedIn, isHost, controller.update
 
 router.delete('/:id', validateID, isLoggedIn, isHost, controller.delete);
 
+router.post('/:id/rsvp', controller.rsvp);
+
 module.exports = router

@@ -1,4 +1,5 @@
 const model = require('../models/event');
+const RSVPmodel = require('../models/rsvp');
 const { FileUpload } = require('../middlewares/fileUpload')
 const { DateTime } = require('luxon');
 
@@ -8,7 +9,7 @@ exports.index = (req, res, next) => {
     const query = model.distinct('category');
     const categoriesPromise = query.exec();
     categoriesPromise.then((categories) => {
-        console.log("a + ", categories);
+        console.log("Categories found: ", categories);
         model.find()
             .then(events => res.render('./event/index', { events, categories }))
             .catch(err => next(err));
@@ -89,9 +90,9 @@ exports.edit = (req, res, next) => {
 exports.update = (req, res, next) => {
     let event = req.body;
     let id = req.params.id;
-    console.log('ssssssssssssssssssssssssss')
+    console.log('-----------------update-----------------')
     // console.log(event + id) Wow first time i've seen a console.log cause errors
-    console.log('ssssssssssssssssssssssssss')
+    console.log('----------------------------------------')
 
     model.findByIdAndUpdate(id, event, { useFindAndModify: false, runValidators: true })
         .then(event => {
@@ -113,4 +114,31 @@ exports.delete = (req, res, next) => {
             res.redirect('/events');
         })
         .catch(err => next(err));
+};
+
+exports.rsvp = (req, res, next) => {
+    // let event = req.body;
+    let id = req.params.id;
+    console.log('---------RSVP event----------');
+    console.log(req.params.id);
+    console.log('-----------------------------');
+    let status = req.body.RSVP;
+    console.log(status);
+    console.log(res.locals.user);
+    let filter = { event: req.params.id, user: res.locals.user }; // gets the event ID
+    let update = { status: req.body.RSVP }; // gets the rsvp status (yes, no, maybe)
+
+
+
+    RSVPmodel.findOneAndUpdate(filter, update, {upsert:true, new:true})
+    .then(event => {
+        req.flash('success', 'RSVP Successful');
+        res.redirect(`/event/${id}`);
+    })
+    .catch(err => {
+        if (err.name === 'ValidationError') {
+            err.status = 400;
+        }
+        next(err);
+    });
 };
