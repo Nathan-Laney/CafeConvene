@@ -111,7 +111,13 @@ exports.delete = (req, res, next) => {
     let id = req.params.id;
     model.findByIdAndDelete(id, { useFindAndModify: false })
         .then(event => {
-            res.redirect('/events');
+
+            // delete all RSVPs associated with this event
+            filter = { event: id };
+            RSVPmodel.deleteMany(filter).then(
+                res.redirect('/events')
+            ).catch(err => next(err));
+
         })
         .catch(err => next(err));
 };
@@ -128,7 +134,7 @@ exports.rsvp = (req, res, next) => {
     let filter = { event: req.params.id, user: res.locals.user }; // gets the event ID
     let update = { status: req.body.RSVP }; // gets the rsvp status (yes, no, maybe)
 
-
+    // find the event hostname for that event
 
     RSVPmodel.findOneAndUpdate(filter, update, {upsert:true, new:true})
     .then(event => {

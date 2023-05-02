@@ -47,10 +47,15 @@ app.use(
 app.use(flash());
 
 app.use((req, res, next) => {
+	res.locals.errorMessages = req.flash("error") || null;
+	res.locals.successMessages = req.flash("success") || null;
 	// console.log(req.session);
-	res.locals.user = req.session.user || null;
-	res.locals.errorMessages = req.flash("error");
-	res.locals.successMessages = req.flash("success");
+	// res.locals.userFirstName = req.session.user.firstName || null;
+	console.log(req.session);
+	// if (typeof req.session.user != "undefined") {
+		res.locals.user = req.session.user || null;
+		res.locals.user.firstName = req.session.user.firstName || null;
+	// }
 	next();
 });
 

@@ -30,7 +30,7 @@
 const express = require('express');
 const controller = require('../controllers/eventController');
 const {fileUpload} = require('../middlewares/fileUpload');
-const {isLoggedIn, isHost} = require('../middlewares/auth');
+const {isLoggedIn, isHost, isNotHost} = require('../middlewares/auth');
 const {validateID, validateResult} = require('../middlewares/validator');
 
 const router = express.Router();
@@ -49,6 +49,6 @@ router.put('/:id', fileUpload, validateID, isLoggedIn, isHost, controller.update
 
 router.delete('/:id', validateID, isLoggedIn, isHost, controller.delete);
 
-router.post('/:id/rsvp', controller.rsvp);
+router.post('/:id/rsvp', validateID, isLoggedIn, isNotHost, controller.rsvp);
 
 module.exports = router

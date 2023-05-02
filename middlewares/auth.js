@@ -42,3 +42,24 @@ exports.isHost = (req, res, next) => {
         })
         .catch(err => next(err));
 }
+
+exports.isNotHost = (req, res, next) => {
+    let id = req.params.id;
+    Event.findById(id)
+        .then(e => {
+            if (e) {
+                if (e.host_name !== req.session.user) {
+                    next();
+                } else {
+                    let err = new Error('The host cannot access this resource');
+                    err.status = 401;
+                    next(err);
+                }
+            } else {
+                let err = new Error(`Cannot find event with id ${id}`);
+                err.status = 404;
+                next(err);
+            }
+        })
+        .catch(err => next(err));
+}

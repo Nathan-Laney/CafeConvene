@@ -1,80 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no"
+		/>
+		<!-- Bootstrap CSS (Above other stylesheets) -->
+		<!-- <link rel="stylesheet" href="../../css/main.min.css"> -->
+		<link rel="stylesheet" href="/css/main.min.css" />
+		<!-- Link my own CSS -->
+		<!-- <link rel="stylesheet" href="../../css/additionalCSS.css"> -->
+		<link rel="stylesheet" href="/css/additionalCSS.css" />
+		<!-- Link font for use on site -->
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css?family=Playfair+Display"
+		/>
+		<link
+			rel="icon"
+			type="image/x-icon"
+			href="../../static/icon-White.svg"
+			id="favicon"
+		/>
+		<title>Café Convene</title>
+	</head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS (Above other stylesheets) -->
-    <!-- <link rel="stylesheet" href="../../css/main.min.css"> -->
-    <link rel="stylesheet" href="/css/main.min.css">
-    <!-- Link my own CSS -->
-    <!-- <link rel="stylesheet" href="../../css/additionalCSS.css"> -->
-    <link rel="stylesheet" href="/css/additionalCSS.css">
-    <!-- Link font for use on site -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display">
-    <link rel="icon" type="image/x-icon" href="../../static/icon-White.svg" id="favicon">
-    <title>Café Convene</title>
-</head>
+	<body>
+		<!-- Main navbar at the top, including user navigation -->
+		<nav
+			class="navbar navbar-expand-lg navbar-light bg-primary fixed-top"
+			id="biggerNavbar"
+		>
+			<a class="navbar-brand" href="/"
+				><img
+					src="/static/Logo-Navy.svg"
+					height="45"
+					alt="logo"
+					id="navbarLogo"
+			/></a>
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-toggle="collapse"
+				data-target="#navbarText"
+				aria-controls="navbarText"
+				aria-expanded="false"
+				aria-label="Toggle navigation"
+			>
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarText">
+				<ul class="navbar-nav ms-auto me-2">
+					<li class="nav-item">
+						<a class="nav-link" href="../event/new">New Event</a>
+					</li>
+                    <% if( typeof user === 'undefined' || !user) {%> 
+                    <li class="nav-item">
+						<a class="nav-link" href="/users/new">Sign Up</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/users/login">Log In</a>
+					</li>
+					<%} else {%>
+					<li class="nav-item">
+						<a class="nav-link" href="/users/profile">
+							<%=locals.user.firstName%>'s Profile</a
+						>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/users/logout">Log Out</a>
+					</li>
+					<%}%>
+				</ul>
+			</div>
+		</nav>
 
-<body>
-    <!-- Main navbar at the top, including user navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top" id="biggerNavbar">
-        <a class="navbar-brand" href="/"><img src="/static/Logo-Navy.svg" height="45" alt="logo" id="navbarLogo"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav ms-auto me-2">
-                <li class="nav-item">
-                    <a class="nav-link" href="../event/new">New Event</a>
-                </li>
-                <%if(!user) {%>
-                    <li class="nav-item">
-                        <a class="nav-link" href='/users/new'>Sign Up</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/users/login">Log In</a>
-                    </li>
-                <%} else {%>
-                    <li class="nav-item">
-                        <a class="nav-link" href='/users/profile'> <%= user.firstName %>'s Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/users/logout">Log Out</a>
-                    </li>
-                <%}%>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Sub-navbar at the top, including site navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top" id="smallerNavbar">
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav" id="navbar-list">
-                <li class="nav-item ms-2 me-auto my-0 py-0">
-                    <a class="nav-link" href="/event/">Events</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <% if(errorMessages.length > 0) {%>
-        <% errorMessages.forEach(message=>{%>
-            <div id='flash'>
-                <p>asdlaksj</p>
-                <%=message%>
-            </div>
-            <%});%>
-                <%}%>
-    
-                    <% if(successMessages.length > 0) {%>
-    
-                        <% successMessages.forEach(message=>{%>
-                            <div id='flash2'>
-                                <p>asdlaksj</p>
-                                <%=message%>
-                            </div>
-                            <%});%>
-                                <%}%>
+		<!-- Sub-navbar at the top, including site navigation -->
+		<nav
+			class="navbar navbar-expand-lg navbar-light bg-primary fixed-top"
+			id="smallerNavbar"
+		>
+			<div class="collapse navbar-collapse">
+				<ul class="navbar-nav" id="navbar-list">
+					<li class="nav-item ms-2 me-auto my-0 py-0">
+						<a class="nav-link" href="/event/">Events</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+        <% if( typeof errorMessages != 'undefined' ) {%> 
+		<% if( errorMessages.length > 0 ) {%> 
+            <%errorMessages.forEach(message=>{%>
+		<div id="flash">
+			<p>asdlaksj</p>
+			<%=message%>
+		</div>
+		<%});%> <%}%> <% if(successMessages.length > 0) {%> <%
+		successMessages.forEach(message=>{%>
+		<div id="flash2">
+			<p>asdlaksj</p>
+			<%=message%>
+		</div>
+		<%});%> <%}%><%}%>
+	</body>
+</html>
