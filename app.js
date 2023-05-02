@@ -51,10 +51,10 @@ app.use((req, res, next) => {
 	res.locals.successMessages = req.flash("success") || null;
 	// console.log(req.session);
 	res.locals.userFirstName = req.session.firstName || null;
-	console.log(req.session);
+	// console.log(req.session);
 	// if (typeof req.session.user != "undefined") {
 	res.locals.user = req.session.user || null;
-	res.locals.user.firstName = req.session.user.firstName || null;
+	// res.locals.user.firstName = req.session.user.firstName || null;
 	// }
 	next();
 });
