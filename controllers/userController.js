@@ -48,6 +48,7 @@ exports.login = (req, res, next) => {
                     .then(result => {
                         if (result) {
                             req.session.user = user._id;
+                            req.session.firstName = user.firstName;
                             req.flash('success', 'You have successfully logged in');
                             res.redirect('/users/profile');
                         } else {
