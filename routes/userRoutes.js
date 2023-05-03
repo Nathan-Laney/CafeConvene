@@ -3,7 +3,7 @@ const controller = require('../controllers/userController');
 const {body} = require('express-validator');
 const {isGuest, isLoggedIn} = require('../middlewares/auth');
 const {logInLimiter} = require('../middlewares/rateLimiters');
-const {validateSignUp, validateSignIn, validateResult} = require('../middlewares/validator');
+const {validateSignUp, validateSignIn} = require('../middlewares/validator');
 
 const router = express.Router();
 

@@ -18,4 +18,14 @@
         <p>You have not created any events</p>
     <%}%>
     </div>
+    <div class="container m-5">
+        <%if(consideredEvents.length) {%>
+            <p>You have RSVP'd 'yes' or 'maybe' to these events</p>
+            <% consideredEvents.forEach(rsvpEvent =>{%>
+                <a href="/event/<%= rsvpEvent.id%>"><p><%=rsvpEvent.title%></p></a>
+            <%});
+        } else {%>
+            <p>You have not RSVP'd to any events</p>
+        <%}%>
+    </div>
     <%- include('../partials/footer.ejs')%>

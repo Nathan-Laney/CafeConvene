@@ -31,7 +31,7 @@ const express = require('express');
 const controller = require('../controllers/eventController');
 const {fileUpload} = require('../middlewares/fileUpload');
 const {isLoggedIn, isHost, isNotHost} = require('../middlewares/auth');
-const {validateID, validateResult} = require('../middlewares/validator');
+const {validateID, validateCategory, validateDateAfter, validateSignIn, validateSignUp, validateStartDate, validateStory} = require('../middlewares/validator');
 
 const router = express.Router();
 
@@ -39,13 +39,13 @@ router.get('/', controller.index);
 
 router.get('/new', isLoggedIn, controller.new);
 
-router.post('/create', fileUpload, isLoggedIn, controller.create); // validateResult
+router.post('/create', fileUpload, isLoggedIn, validateCategory, controller.create); // validateResult
 
 router.get('/:id', validateID, controller.show);
 
 router.get('/:id/edit', validateID, isLoggedIn, isHost, controller.edit);
 
-router.put('/:id', fileUpload, validateID, isLoggedIn, isHost, controller.update);
+router.put('/:id', fileUpload, isLoggedIn, validateCategory, isHost, controller.update);
 
 router.delete('/:id', validateID, isLoggedIn, isHost, controller.delete);
 

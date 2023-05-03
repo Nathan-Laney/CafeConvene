@@ -40,3 +40,5 @@ allowedCategories = ['Coffee Tasting', 'Latte Art Masterclass', 'New Roast Launc
 exports.validateCategory = [body('category', 'Category cannot be empty').isIn(allowedCategories)]
 
 exports.validateStartDate = [body('startDate', 'Start date cannot be empty').notEmpty().isISO8601().isAfter(Date.now())]
+
+exports.validateDateAfter = [body('end', 'End time must be after start time').notEmpty().isISO8601().custom((value, { req }) => new Date(value) > new Date(req.body.start)).trim().escape()]

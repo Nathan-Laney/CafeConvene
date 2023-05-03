@@ -1,5 +1,6 @@
 const model = require('../models/user');
 const Event = require('../models/event');
+const RSVPModel = require('../models/rsvp');
 
 exports.new = (req, res) => {
     res.render('./user/new');
@@ -9,7 +10,9 @@ exports.create = (req, res, next) => {
 
     let user = new model(req.body);
     user.save()
-        .then(user => res.redirect('/users/login'))
+        .then(user => {
+            req.flash('success', 'You have successfully created a new user.');
+            res.redirect('/users/login')})
         .catch(err => {
             if (err.name === 'ValidationError') {
                 req.flash('error', err.message);
@@ -28,9 +31,7 @@ exports.create = (req, res, next) => {
 };
 
 exports.getUserLogin = (req, res, next) => {
-
     res.render('./user/login');
-
 }
 
 exports.login = (req, res, next) => {
@@ -65,14 +66,22 @@ exports.login = (req, res, next) => {
 
 exports.profile = (req, res, next) => {
     let id = req.session.user;
-    Promise.all([model.findById(id), Event.find({ host_name: id })])
+    Promise.all([model.findById(id), Event.find({ host_name: id }), RSVPModel.find({ user: id })])
         .then(results => {
-            const [user, events] = results;
-            console.log(results)
-            for( e in events) {
+            const [user, events, rsvps] = results;
+            let consideringEvents = [];
+            for( e in rsvps) {
                 console.log(e)
+                if(rsvps[e].status === 'YES' || rsvps[e].status === 'MAYBE') {
+                    console.log(rsvps[e])
+                    consideringEvents.push(rsvps[e].event)
+                }
             }
-            res.render('./user/profile', { user, events })
+            console.log('consideringEvents: ', consideringEvents)
+            Event.find({_id: {$in: consideringEvents}}).then(consideredEvents=> {
+                console.log('consideredEvents: ', consideredEvents)
+                res.render('./user/profile', { user, events, consideredEvents})
+            }).catch(err => next(err));
         })
         .catch(err => next(err));
 };
@@ -81,9 +90,10 @@ exports.profile = (req, res, next) => {
 exports.logout = (req, res, next) => {
     req.session.destroy(err => {
         if (err) {
-            req.flash('success', 'You have successfully logged out');
+            req.flash('error', 'Please try again');
             return next(err);
         } else
+            req.flash('success', 'You have successfully logged out');
             res.redirect('/');
     });
 
